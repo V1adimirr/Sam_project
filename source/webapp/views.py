@@ -1,3 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
-# Create your views here.
+from .models import TaskModel
+
+
+def index(request):
+    tasks = TaskModel.objects.all()
+    context = {"tasks": tasks}
+    return render(request, "index.html", context)
