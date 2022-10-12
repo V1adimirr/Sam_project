@@ -6,8 +6,9 @@ from .models import TaskModel
 class TaskCreateForm(forms.ModelForm):
     class Meta:
         model = TaskModel
-        fields = ['description', 'status', 'real_date']
+        fields = ['task_name', 'description', 'status', 'type']
         widgets = {
-            'real_date': forms.SelectDateWidget
+            'status': forms.RadioSelect,
+            'type': forms.RadioSelect
         }
 
