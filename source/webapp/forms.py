@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import TaskModel
+from .models import TaskModel, TaskType
 
 
 class TaskCreateForm(forms.ModelForm):
@@ -9,6 +9,6 @@ class TaskCreateForm(forms.ModelForm):
         fields = ['task_name', 'description', 'status', 'type']
         widgets = {
             'status': forms.RadioSelect,
-            'type': forms.RadioSelect
+            'type': forms.CheckboxSelectMultiple
         }
 
