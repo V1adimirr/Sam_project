@@ -13,7 +13,7 @@ class TaskModel(BaseModel):
     task_name = models.CharField(max_length=50, verbose_name='Название')
     description = models.TextField(max_length=1000, null=True, blank=True, verbose_name='Описание')
     status = models.ForeignKey('TaskStatus', on_delete=models.CASCADE, related_name='statuses', verbose_name='Статус')
-    type = models.ForeignKey('TaskType', on_delete=models.CASCADE, related_name='types', verbose_name='Тип')
+    type = models.ManyToManyField('TaskType', related_name='types', verbose_name='Тип')
 
     def __str__(self):
         return f'{self.task_name}, {self.description}'
