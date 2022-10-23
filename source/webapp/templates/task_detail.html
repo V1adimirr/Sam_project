@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Детально{% endblock %}
+
+{% block nav %}
+        <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="{% url 'task_delete' task.pk %}">Удалить</a>
+    </li>
+        <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="{% url 'task_update' task.pk %}">Изменить</a>
+    </li>
+{% endblock %}
+
+{% block content %}
+    <div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="..." class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+          <a href="{% url 'task_detail' task.pk %}" style="text-decoration: none"><h4>{{ task.task_name }}</h4></a>
+        <h5>{{ task.description }}</h5>
+        <p style="font-weight: bold">{{ task.status }}</p>
+          {% for type in task.type.all %}
+              <p style="font-weight: bold; color: #7dc07d">{{ type }}</p>
+          {% endfor %}
+          <p class="card-text"><small class="text-muted">{{ task.created_at }}</small></p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
