@@ -1,3 +1,5 @@
+from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.shortcuts import redirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, CreateView, DeleteView, UpdateView, DetailView
 
@@ -17,12 +19,13 @@ class TaskDetail(DetailView):
     context_object_name = 'task'
 
 
-class TaskCreate(CreateView):
+class TaskCreate(PermissionRequiredMixin, CreateView):
     form_class = TaskCreateForm
     template_name = 'task_create.html'
+    permission_required = 'webapp:add'
 
     def get_success_url(self):
-        return reverse('index')
+        return reverse('webapp:index')
 
 
 class TaskDelete(DeleteView):
@@ -38,4 +41,4 @@ class TaskUpdate(UpdateView):
     template_name = 'task_update.html'
 
     def get_success_url(self):
-        return reverse('index')
+        return reverse('webapp:index')

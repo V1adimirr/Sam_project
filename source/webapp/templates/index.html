@@ -3,10 +3,17 @@
 {% block title %}Список{% endblock %}
 {% block nav %}
     <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="{% url 'task_create' %}">Добавить</a>
+        <a class="nav-link active" aria-current="page" href="{% url 'webapp:task_create' %}">Добавить</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="{% url 'accounts:login' %}">Войти</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="{% url 'accounts:logout' %}">Выйти</a>
     </li>
 {% endblock %}
 {% block content %}
+    <p>{{ request.user }}</p>
     {% for task in tasks %}
         <div class="card mb-3" style="max-width: 540px;">
           <div class="row g-0">
@@ -15,7 +22,7 @@
             </div>
             <div class="col-md-8">
               <div class="card-body">
-                  <a href="{% url 'task_detail' task.pk %}" style="text-decoration: none"><h4>{{ task.task_name }}</h4></a>
+                  <a href="{% url 'webapp:task_detail' task.pk %}" style="text-decoration: none"><h4>{{ task.task_name }}</h4></a>
                 <h5>{{ task.description }}</h5>
                 <p style="font-weight: bold">{{ task.status }}</p>
                   {% for type in task.type.all %}

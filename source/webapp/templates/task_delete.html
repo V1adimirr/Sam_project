@@ -4,11 +4,11 @@
 
 {% block content %}
     <h5>Вы уверены, что хотите удалить задачу "{{ task.description }}"?</h5>
-    <form action="{% url 'task_delete' task.pk %}" method="post">
+    <form action="{% url 'webapp:task_delete' task.pk %}" method="post">
         {% csrf_token %}
         <div class="btn-group">
             <button class="btn btn-warning" type="submit">Да</button>
-            <a class="btn btn-primary" href="{% url 'index' %}">Нет</a>
+            <a class="btn btn-primary" href="{% url 'webapp:index' %}">Нет</a>
         </div>
     </form>
 {% endblock %}

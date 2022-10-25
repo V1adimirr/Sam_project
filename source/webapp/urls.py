@@ -2,6 +2,9 @@ from django.urls import path
 
 from .views import TaskView, TaskCreate, TaskDelete, TaskUpdate, TaskDetail
 
+
+app_name = 'webapp'
+
 urlpatterns = [
 
     path('', TaskView.as_view(), name='index'),
