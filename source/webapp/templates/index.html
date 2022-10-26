@@ -2,15 +2,18 @@
 
 {% block title %}Список{% endblock %}
 {% block nav %}
-    <li class="nav-item">
+    {% if user.is_authenticated %}
+        <li class="nav-item">
         <a class="nav-link active" aria-current="page" href="{% url 'webapp:task_create' %}">Добавить</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="{% url 'accounts:login' %}">Войти</a>
     </li>
     <li class="nav-item">
         <a class="nav-link active" aria-current="page" href="{% url 'accounts:logout' %}">Выйти</a>
     </li>
+    {% else %}
+    <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="{% url 'accounts:login' %}">Войти</a>
+    </li>
+    {% endif %}
 {% endblock %}
 {% block content %}
     <p>{{ request.user }}</p>
