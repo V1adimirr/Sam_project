@@ -2,6 +2,11 @@
 
 {% block title %}Список{% endblock %}
 {% block nav %}
+    {% if not user.is_authenticated %}
+       <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="{% url 'accounts:registration' %}">Регистрация</a>
+    </li>
+    {% endif %}
     {% if user.is_authenticated %}
         <li class="nav-item">
         <a class="nav-link active" aria-current="page" href="{% url 'webapp:task_create' %}">Добавить</a>

@@ -35,10 +35,11 @@ class TaskDelete(DeleteView):
     context_object_name = 'task'
 
 
-class TaskUpdate(UpdateView):
+class TaskUpdate(PermissionRequiredMixin, UpdateView):
     model = TaskModel
     form_class = TaskCreateForm
     template_name = 'task_update.html'
+    permission_required = 'webapp:change'
 
     def get_success_url(self):
         return reverse('webapp:index')
